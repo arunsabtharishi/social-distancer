@@ -1,23 +1,100 @@
 import React from 'react';
- 
+import Stomp from 'stompjs'
+import SockJS from 'SockJS-client'
+import { v1 as uuidv1 } from 'uuid'
+import {pingDeviceLocation} from '../utils/apis'
+
 class Geoloc extends React.Component {  
-  render() {
-    return !this.props.isGeolocationAvailable
-      ? <div>Your browser does not support Geolocation</div>
-      : !this.props.isGeolocationEnabled
-        ? <div>Geolocation is not enabled</div>
-        : this.props.coords
-          ? <table>
-            <tbody>
-              <tr><td>latitude</td><td>{this.props.coords.latitude}</td></tr>
-              <tr><td>longitude</td><td>{this.props.coords.longitude}</td></tr>
-              <tr><td>altitude</td><td>{this.props.coords.altitude}</td></tr>
-              <tr><td>heading</td><td>{this.props.coords.heading}</td></tr>
-              <tr><td>speed</td><td>{this.props.coords.speed}</td></tr>
-            </tbody>
-          </table>
-          : <div>Getting the location data&hellip; </div>;
+constructor(props) {
+  super(props)
+
+  this.state = {
+    id : null,
+    isClose: 'false',
+    isLoaded: 'false',
+    isTopicConnected: 'false'
   }
+
+  this.getInitialState = this.getInitialState.bind(this)
+  this.setId = this.setId.bind(this)
+}
+
+  render() {
+    //if(this.state.isClose === 'true') {
+      return (
+        <div>
+          
+          <audio autoPlay preload='auto'> 
+            <source src='https://media.vocaroo.com/mp3/l0HAKXK1ilz' type="audio/mp3"></source>
+          </audio>
+          <h1 className='blink_text'>Maintain social distancing</h1>
+        </div>
+      )
+    //}
+  //   return !this.props.isGeolocationAvailable
+  //     ? <div>Your browser does not support Geolocation</div>
+  //     : !this.props.isGeolocationEnabled
+  //       ? <div>Geolocation is not enabled</div>
+  //       : this.props.coords
+  //         ? <table>
+  //           <tbody>
+  //             <tr><td>latitude</td><td>{this.props.coords.latitude}</td></tr>
+  //             <tr><td>longitude</td><td>{this.props.coords.longitude}</td></tr>
+  //             <tr><td>altitude</td><td>{this.props.coords.altitude}</td></tr>
+  //             <tr><td>heading</td><td>{this.props.coords.heading}</td></tr>
+  //             <tr><td>speed</td><td>{this.props.coords.speed}</td></tr>
+  //           </tbody>
+  //         </table>
+  //         : <div>Getting the location data&hellip; </div>;
+    
+  }
+
+  getInitialState() {
+    return localStorage.getItem('id');
+  }
+
+  setId (id) {
+      var id1 = localStorage.setItem( 'id', id );   
+      this.setState( { id: id1 } );  
+  }
+
+  componentDidUpdate() {
+    // if(this.props.coords && this.state.isLoaded === 'false' && this.state.isTopicConnected === 'true') {
+    //   this.getInitialState() ? this.getInitialState() : this.setId(uuidv1())
+    //   const obj = {      
+    //       id: this.getInitialState(),
+    //       latitude: this.props.coords.latitude,
+    //       longitude: this.props.coords.longitude,
+    //       altitude: this.props.coords.altitude       
+    //   }
+    //   pingDeviceLocation(obj)
+    //       .then((data)=>{
+    //         console.log(data)
+    //           this.setState(({results})=>({
+    //             isLoaded: 'true'           
+    //           }))              
+    //       })
+    //    }
+  }
+
+  componentDidMount() {
+    // let socket = new SockJS('http://localhost:8071/websocket');
+    // let stompClient = Stomp.over(socket);
+    // var that = this;
+    // stompClient.connect({}, function(frame) {
+    //   console.log('Connected!')
+    //   that.setState({
+    //     isTopicConnected: 'true'
+    //   })  
+     
+    //     stompClient.subscribe('/topic/pushNotification', function (notification) {
+    //       console.log(notification.body)
+    //         that.setState({
+    //           isClose: notification.body,
+    //         })           
+    //     });
+    // });
+  }  
 }
  
 export default Geoloc;
