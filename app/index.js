@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import Location from './components/Location'
 import './index.css'
 import { geolocated } from "react-geolocated"
 
@@ -9,7 +10,7 @@ class App extends React.Component {
     render() {
         return(
 			<div>
-                <p>{this.props.coords && this.props.coords.latitude}</p>
+                {/* <p>{this.props.coords && this.props.coords.latitude}</p> */}
                 <Geoloc {...this.props} />
 			</div>            
         )
