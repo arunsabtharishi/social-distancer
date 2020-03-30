@@ -2,7 +2,7 @@ import React from 'react';
 import Stomp from 'stompjs'
 import SockJS from 'SockJS-client'
 import { v1 as uuidv1 } from 'uuid'
-import {pingDeviceLocation} from '../utils/apis'
+//import {pingDeviceLocation} from '../utils/apis'
 
 class Geoloc extends React.Component {  
 constructor(props) {
@@ -15,8 +15,8 @@ constructor(props) {
     isTopicConnected: 'false'
   }
 
-  this.getInitialState = this.getInitialState.bind(this)
-  this.setId = this.setId.bind(this)
+//   this.getInitialState = this.getInitialState.bind(this)
+//   this.setId = this.setId.bind(this)
 }
 
   render() {
@@ -49,14 +49,14 @@ constructor(props) {
     
   }
 
-  getInitialState() {
-    return localStorage.getItem('id');
-  }
+//   getInitialState() {
+//     return localStorage.getItem('id');
+//   }
 
-  setId (id) {
-      var id1 = localStorage.setItem( 'id', id );   
-      this.setState( { id: id1 } );  
-  }
+//   setId (id) {
+//       var id1 = localStorage.setItem( 'id', id );   
+//       this.setState( { id: id1 } );  
+//   }
 
   componentDidUpdate() {
     // if(this.props.coords && this.state.isLoaded === 'false' && this.state.isTopicConnected === 'true') {
