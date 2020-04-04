@@ -1,6 +1,6 @@
 import React from 'react';
 import Stomp from 'stompjs'
-import SockJS from 'SockJS-client'
+//import SockJS from 'sockjs-client'
 import { v1 as uuidv1 } from 'uuid'
 import {pingDeviceLocation} from '../utils/apis'
 
@@ -78,22 +78,22 @@ constructor(props) {
   }
 
   componentDidMount() {
-    let socket = new SockJS('http://localhost:8071/websocket');
-    let stompClient = Stomp.over(socket);
-    var that = this;
-    stompClient.connect({}, function(frame) {
-      console.log('Connected!')
-      that.setState({
-        isTopicConnected: 'true'
-      })  
+    // let socket = new SockJS('http://localhost:8071/websocket');
+    // let stompClient = Stomp.over(socket);
+    // var that = this;
+    // stompClient.connect({}, function(frame) {
+    //   console.log('Connected!')
+    //   that.setState({
+    //     isTopicConnected: 'true'
+    //   })  
      
-        stompClient.subscribe('/topic/pushNotification', function (notification) {
-          console.log(notification.body)
-            that.setState({
-              isClose: notification.body,
-            })           
-        });
-    });
+    //     stompClient.subscribe('/topic/pushNotification', function (notification) {
+    //       console.log(notification.body)
+    //         that.setState({
+    //           isClose: notification.body,
+    //         })           
+    //     });
+    // });
   }  
 }
  
