@@ -78,7 +78,7 @@ constructor(props) {
   }
 
   componentDidMount() {
-    let socket = new SockJS('http://localhost:8071/websocket');
+    let socket = new SockJS('https://localhost:8071/websocket');
     let stompClient = Stomp.over(socket);
     var that = this;
     stompClient.connect({}, function(frame) {
