@@ -1,6 +1,6 @@
 import React from 'react';
 import Stomp from 'stompjs'
-import SockJS from 'SockJS-client'
+import SockJS from 'sockjs-client'
 import { v1 as uuidv1 } from 'uuid'
 import {pingDeviceLocation} from '../utils/apis'
 
