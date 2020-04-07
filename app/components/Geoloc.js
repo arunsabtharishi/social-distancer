@@ -83,7 +83,7 @@ constructor(props) {
   }
 
   componentDidMount() {
-    let socket = new SockJS('http://ec2-3-91-182-186.compute-1.amazonaws.com:8080/websocket');
+    let socket = new SockJS('https://ec2-3-91-182-186.compute-1.amazonaws.com:8080/websocket');
     let stompClient = Stomp.over(socket);
     var that = this;
     stompClient.connect({}, function(frame) {
