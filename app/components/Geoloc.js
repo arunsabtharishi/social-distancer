@@ -1,6 +1,6 @@
 import React from 'react';
 import Stomp from 'stompjs'
-import SockJS from 'sockjs-client'
+import SockJS from 'SockJS-client'
 import { v1 as uuidv1 } from 'uuid'
 import {pingDeviceLocation} from '../utils/apis'
 
@@ -36,7 +36,12 @@ constructor(props) {
       : !this.props.isGeolocationEnabled
         ? <div>Geolocation is not enabled</div>
         : this.props.coords
-          ? <table>
+          ?
+          <div>
+          <h1>
+              Good job! Thanks for maintaining social distance!
+          </h1> 
+          <table>
             <tbody>
               <tr><td>latitude</td><td>{this.props.coords.latitude}</td></tr>
               <tr><td>longitude</td><td>{this.props.coords.longitude}</td></tr>
@@ -45,6 +50,7 @@ constructor(props) {
               <tr><td>speed</td><td>{this.props.coords.speed}</td></tr>
             </tbody>
           </table>
+          </div>
           : <div>Getting the location data&hellip; </div>;
     
   }
@@ -69,7 +75,6 @@ constructor(props) {
       }
       pingDeviceLocation(obj)
           .then((data)=>{
-            console.log(data)
               this.setState(({results})=>({
                 isLoaded: 'true'           
               }))              
@@ -78,7 +83,7 @@ constructor(props) {
   }
 
   componentDidMount() {
-    let socket = new SockJS('https://localhost:8071/websocket');
+    let socket = new SockJS('http://ec2-3-91-182-186.compute-1.amazonaws.com:8080/websocket');
     let stompClient = Stomp.over(socket);
     var that = this;
     stompClient.connect({}, function(frame) {
