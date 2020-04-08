@@ -83,7 +83,7 @@ constructor(props) {
   }
 
   componentDidMount() {
-    let socket = new SockJS('https://ec2-3-91-182-186.compute-1.amazonaws.com:8080/websocket');
+    let socket = new SockJS('https://ec2-3-93-232-210.compute-1.amazonaws.com:8071/websocket', {secure: true, rejectUnauthorized: false});
     let stompClient = Stomp.over(socket);
     var that = this;
     stompClient.connect({}, function(frame) {
@@ -93,11 +93,13 @@ constructor(props) {
       })  
      
         stompClient.subscribe('/topic/pushNotification', function (notification) {
-          console.log(notification.body)
+          const obj = JSON.parse(notification.body)
+          if(obj.id1 === that.getInitialState() || obj.id2 === that.getInitialState()) {
             that.setState({
-              isClose: notification.body,
-            })           
-        });
+              isClose: "true",
+            })
+          }
+        });        
     });
   }  
 }
