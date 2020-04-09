@@ -1,4 +1,4 @@
-const pingapi = `https://ec2-3-93-232-210.compute-1.amazonaws.com:8080/update-device-location`
+const pingapi = `https://ec2-18-191-180-167.us-east-2.compute.amazonaws.com:8080/update-device-location`
 
 
 
